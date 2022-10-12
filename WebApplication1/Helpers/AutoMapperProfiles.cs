@@ -10,6 +10,9 @@ namespace TallerVehiculos.Helpers
         {
             CreateMap<VehiculoCreacionDTO, Vehiculo>();
             CreateMap<Vehiculo, VehiculoDTO>().ReverseMap();
+
+            CreateMap<TipoVehiculoCreacionDTO, TipoVehiculo>();
+            CreateMap<TipoVehiculo, TipoVehiculoDTO>().ReverseMap();
         }
     }
 }
