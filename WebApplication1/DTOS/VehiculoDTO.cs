@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TallerVehiculos.Entidades
+namespace TallerVehiculos.DTOS
 {
-    public class Vehiculo
+    public class VehiculoDTO
     {
         [Key]
         public int Id { get; set; }
@@ -14,6 +14,5 @@ namespace TallerVehiculos.Entidades
         public int Modelo { get; set; }
         [Required]
         public int Cilindraje { get; set; }
-
     }
 }

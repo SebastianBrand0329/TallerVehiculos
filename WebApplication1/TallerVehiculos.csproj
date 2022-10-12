@@ -19,10 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Modelos\" />
-    <Folder Include="DTOS\" />
     <Folder Include="Servicios\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

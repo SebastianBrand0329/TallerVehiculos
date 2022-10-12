@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.Data
 {
@@ -8,5 +9,7 @@ namespace TallerVehiculos.Data
         {
 
         }
+
+        public DbSet<Vehiculo> Vehiculos { get; set; }  
     }
 }

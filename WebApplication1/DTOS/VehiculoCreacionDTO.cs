@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TallerVehiculos.Entidades
+namespace TallerVehiculos.DTOS
 {
-    public class Vehiculo
+    public class VehiculoCreacionDTO
     {
-        [Key]
-        public int Id { get; set; }
         [MaxLength(10), Required]
         public string Placa { get; set; }
         [MaxLength(50), Required]
@@ -14,6 +12,5 @@ namespace TallerVehiculos.Entidades
         public int Modelo { get; set; }
         [Required]
         public int Cilindraje { get; set; }
-
     }
 }
