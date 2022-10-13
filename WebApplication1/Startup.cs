@@ -1,6 +1,9 @@
 ﻿using TallerVehiculos.Data;
+using TallerVehiculos.Servicios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text;
+
 
 namespace TallerVehiculos
 {
@@ -19,6 +22,10 @@ namespace TallerVehiculos
             services.AddControllers();
 
            services.AddAutoMapper(typeof(Startup));
+
+            services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosLocal>();
+
+            services.AddHttpContextAccessor();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
@@ -40,6 +47,8 @@ namespace TallerVehiculos
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
