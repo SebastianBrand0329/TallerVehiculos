@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.DTOS
 {
@@ -7,5 +8,7 @@ namespace TallerVehiculos.DTOS
         [Required]
         [MaxLength(20)]
         public string Tipo { get; set; }
+
+        public ICollection<Vehiculo> Vehiculos { get; set; }
     }
 }

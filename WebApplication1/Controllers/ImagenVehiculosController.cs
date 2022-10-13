@@ -5,9 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using TallerVehiculos.Data;
 using TallerVehiculos.DTOS;
 using TallerVehiculos.Entidades;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace TallerVehiculos.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     [ApiController]
     [Route("api/imagenvehiculos")]
     public class ImagenVehiculosController:Controller

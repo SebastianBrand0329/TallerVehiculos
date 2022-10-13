@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using TallerVehiculos.Entidades;
 namespace TallerVehiculos.DTOS
 {
     public class HistorialCreacionDTO
@@ -9,5 +10,6 @@ namespace TallerVehiculos.DTOS
         public string Descripcion { get; set; }
         [Required]
         public decimal KilometrajeIngreso { get; set; }
+        public ICollection<Detalle> Detalles { get; set; }
     }
 }

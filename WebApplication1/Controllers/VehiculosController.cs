@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TallerVehiculos.Data;
@@ -7,6 +9,7 @@ using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.Controllers
 {
+    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     [ApiController]
     [Route("api/vehiculos")]
     public class VehiculosController: Controller

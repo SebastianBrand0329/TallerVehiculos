@@ -8,5 +8,7 @@ namespace TallerVehiculos.Entidades
         [Required]
         [MaxLength(20)]
         public string Tipo { get; set; }
+
+        public ICollection<Vehiculo> Vehiculos { get; set; }
     }
 }

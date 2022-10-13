@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TallerVehiculos.Data;
 
@@ -11,9 +12,10 @@ using TallerVehiculos.Data;
 namespace TallerVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221013215133_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,7 +253,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasIndex("ProcedimientoId");
 
-                    b.ToTable("Detalles", (string)null);
+                    b.ToTable("Detalles");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Historial", b =>
@@ -277,7 +279,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasIndex("VehiculoId");
 
-                    b.ToTable("Historiales", (string)null);
+                    b.ToTable("Historiales");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.ImagenVehiculo", b =>
@@ -304,7 +306,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasIndex("VehiculoId");
 
-                    b.ToTable("ImagenVehiculos", (string)null);
+                    b.ToTable("ImagenVehiculos");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.MarcaVehiculo", b =>
@@ -322,7 +324,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MarcaVehiculos", (string)null);
+                    b.ToTable("MarcaVehiculos");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Procedimiento", b =>
@@ -343,7 +345,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Procedimientos", (string)null);
+                    b.ToTable("Procedimientos");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.TipoDocumento", b =>
@@ -361,7 +363,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoDocumentos", (string)null);
+                    b.ToTable("TipoDocumentos");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.TipoVehiculo", b =>
@@ -379,7 +381,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoVehiculos", (string)null);
+                    b.ToTable("TipoVehiculos");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Vehiculo", b =>
@@ -418,7 +420,7 @@ namespace TallerVehiculos.Migrations
 
                     b.HasIndex("TipoVehiculoId");
 
-                    b.ToTable("Vehiculos", (string)null);
+                    b.ToTable("Vehiculos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

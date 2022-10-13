@@ -11,5 +11,7 @@ namespace TallerVehiculos.Entidades
         [Required]
         public decimal Valor { get; set; }
 
+        public ICollection<Detalle> Detalles { get; set; }
+
     }
 }

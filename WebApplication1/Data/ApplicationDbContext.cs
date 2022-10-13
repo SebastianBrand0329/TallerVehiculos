@@ -1,14 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions option): base(option)
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Vehiculo>().HasIndex(x => x.Placa).IsUnique();
+        }
+
 
         public DbSet<Vehiculo> Vehiculos { get; set; }  
         public DbSet<TipoVehiculo> TipoVehiculos { get; set; }  

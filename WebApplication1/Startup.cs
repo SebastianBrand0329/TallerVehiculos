@@ -1,6 +1,9 @@
 ﻿using TallerVehiculos.Data;
 using TallerVehiculos.Servicios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
@@ -30,9 +33,73 @@ namespace TallerVehiculos
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
 
+
+            services.AddCors(options =>
+            {
+                var frontEND = Configuration.GetValue<string>("frontend");
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins(frontEND).AllowAnyOrigin().AllowAnyHeader();
+                });
+            });
+
+            services.AddResponseCaching();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opciones => opciones.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(Configuration["llavejwt"])),
+                    ClockSkew = TimeSpan.Zero
+                });
+
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiTallerVehiculos", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+
+
+                });
+            });
+
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddAuthorization(opciones =>
+            {
+                opciones.AddPolicy("Admin", politica => politica.RequireClaim("Admin"));
+
+                opciones.AddPolicy("Normal", politica => politica.RequireClaim("Normal"));
             });
         }
 

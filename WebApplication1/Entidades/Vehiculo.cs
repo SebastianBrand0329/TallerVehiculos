@@ -15,5 +15,7 @@ namespace TallerVehiculos.Entidades
         [Required]
         public int Cilindraje { get; set; }
 
+        public ICollection<ImagenVehiculo> ImagenVehiculos { get; set; }
+        public ICollection<Historial> Historials { get; set; }
     }
 }

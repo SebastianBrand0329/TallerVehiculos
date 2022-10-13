@@ -10,5 +10,7 @@ namespace TallerVehiculos.Entidades
         public string Descripcion { get; set; }
         [Required]
         public decimal KilometrajeIngreso { get; set; }
+
+        public ICollection<Detalle> Detalles { get; set; }  
     }
 }

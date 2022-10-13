@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace TallerVehiculos.Entidades
 {
@@ -8,5 +9,7 @@ namespace TallerVehiculos.Entidades
         [Required]
         [MaxLength(30)]
         public string Descripcion { get; set; }
+
+        public ICollection<AspNetUserManager> User { get; set; }
     }
 }
