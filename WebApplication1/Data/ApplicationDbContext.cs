@@ -14,8 +14,8 @@ namespace TallerVehiculos.Data
         public DbSet<TipoVehiculo> TipoVehiculos { get; set; }  
         public DbSet<MarcaVehiculo> MarcaVehiculos { get; set; }
         public DbSet<ImagenVehiculo> ImagenVehiculos { get; set; }
-
         public DbSet<Procedimiento> Procedimientos { get; set; }    
+        public DbSet<TipoDocumento> TipoDocumentos { get; set; }
 
     }
 }
