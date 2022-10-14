@@ -15,7 +15,6 @@ namespace TallerVehiculos.DTOS
         public int Modelo { get; set; }
         [Required]
         public int Cilindraje { get; set; }
-        public ICollection<ImagenVehiculo> ImagenVehiculos { get; set; }
-        public ICollection<Historial> Historials { get; set; }
+
     }
 }

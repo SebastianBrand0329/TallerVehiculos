@@ -126,7 +126,6 @@ namespace TallerVehiculos.Controllers
 
 
         [HttpPost("login")] // Inicio de sesión
-        [AllowAnonymous]
         public async Task<ActionResult<RespuestaAutenticacion>> Login(CredencialesUsuario credencialesUsuario)
         {
 

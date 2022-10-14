@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TallerVehiculos.Entidades;
+using TallerVehiculos.Modelos;
 
 namespace TallerVehiculos.Data
 {
@@ -25,8 +26,8 @@ namespace TallerVehiculos.Data
         public DbSet<Procedimiento> Procedimientos { get; set; }    
         public DbSet<TipoDocumento> TipoDocumentos { get; set; }
         public DbSet<Detalle> Detalles { get; set; }
-
         public DbSet<Historial> Historiales { get; set; }
+        public DbSet<IdentityModels> User { get; set; }
 
     }
 }

@@ -11,7 +11,7 @@ using System.Data;
 
 namespace TallerVehiculos.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     [ApiController]
     [Route("api/imagenvehiculos")]
     public class ImagenVehiculosController:Controller

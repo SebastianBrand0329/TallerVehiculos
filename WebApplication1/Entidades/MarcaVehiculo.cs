@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TallerVehiculos.Entidades
 {
@@ -8,7 +9,7 @@ namespace TallerVehiculos.Entidades
         [Required]
         [MaxLength(50)]
         public string Marca { get; set; }
-
+        [JsonIgnore]
         public ICollection<Vehiculo> Vehiculos { get; set; }
     }
 }

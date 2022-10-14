@@ -10,7 +10,6 @@ namespace TallerVehiculos.DTOS
         [MaxLength(500)]
         public string Descripcion { get; set; }
         [Required]
-        public decimal KilometrajeIngreso { get; set; }
-        public ICollection<Detalle> Detalles { get; set; }
+        public double KilometrajeIngreso { get; set; }
     }
 }

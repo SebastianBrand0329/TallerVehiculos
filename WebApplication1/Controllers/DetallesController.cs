@@ -10,9 +10,10 @@ using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+    
     [ApiController]
     [Route("api/detalles")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class DetallesController: Controller 
     {
         private readonly ILogger<MarcaVehiculosController> logger;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TallerVehiculos.Data;
 
@@ -11,9 +12,10 @@ using TallerVehiculos.Data;
 namespace TallerVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221014011201_V3")]
+    partial class V3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -404,9 +406,6 @@ namespace TallerVehiculos.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("IdentityModelsId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("MarcaVehiculoId")
                         .HasColumnType("int");
 
@@ -422,8 +421,6 @@ namespace TallerVehiculos.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdentityModelsId");
 
                     b.HasIndex("MarcaVehiculoId");
 
@@ -540,10 +537,6 @@ namespace TallerVehiculos.Migrations
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Vehiculo", b =>
                 {
-                    b.HasOne("TallerVehiculos.Modelos.IdentityModels", "IdentityModels")
-                        .WithMany("Vehiculos")
-                        .HasForeignKey("IdentityModelsId");
-
                     b.HasOne("TallerVehiculos.Entidades.MarcaVehiculo", "MarcaVehiculo")
                         .WithMany("Vehiculos")
                         .HasForeignKey("MarcaVehiculoId");
@@ -551,8 +544,6 @@ namespace TallerVehiculos.Migrations
                     b.HasOne("TallerVehiculos.Entidades.TipoVehiculo", "TipoVehiculo")
                         .WithMany("Vehiculos")
                         .HasForeignKey("TipoVehiculoId");
-
-                    b.Navigation("IdentityModels");
 
                     b.Navigation("MarcaVehiculo");
 
@@ -598,11 +589,6 @@ namespace TallerVehiculos.Migrations
                     b.Navigation("Historials");
 
                     b.Navigation("ImagenVehiculos");
-                });
-
-            modelBuilder.Entity("TallerVehiculos.Modelos.IdentityModels", b =>
-                {
-                    b.Navigation("Vehiculos");
                 });
 #pragma warning restore 612, 618
         }

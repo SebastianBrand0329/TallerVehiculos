@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using TallerVehiculos.Modelos;
 
 namespace TallerVehiculos.Entidades
 {
@@ -14,8 +16,15 @@ namespace TallerVehiculos.Entidades
         public int Modelo { get; set; }
         [Required]
         public int Cilindraje { get; set; }
-
+        [JsonIgnore]
+        public MarcaVehiculo MarcaVehiculo { get; set; }
+        [JsonIgnore]
+        public TipoVehiculo TipoVehiculo { get; set; }
+        [JsonIgnore]
+        public IdentityModels IdentityModels { get; set; }
+        [JsonIgnore]
         public ICollection<ImagenVehiculo> ImagenVehiculos { get; set; }
+        [JsonIgnore]
         public ICollection<Historial> Historials { get; set; }
     }
 }

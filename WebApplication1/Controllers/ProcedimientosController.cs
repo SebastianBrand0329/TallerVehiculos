@@ -10,7 +10,7 @@ using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy= "Admin")]
     [ApiController]
     [Route("api/procedimientos")]
     public class ProcedimientosController : Controller

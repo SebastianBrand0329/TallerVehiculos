@@ -12,8 +12,8 @@ using TallerVehiculos.Data;
 namespace TallerVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221013215133_Identity")]
-    partial class Identity
+    [Migration("20221013234655_v2")]
+    partial class v2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,6 +88,10 @@ namespace TallerVehiculos.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -139,6 +143,8 @@ namespace TallerVehiculos.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -238,11 +244,11 @@ namespace TallerVehiculos.Migrations
                     b.Property<int?>("HistorialId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("PrecioReparacion")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("PrecioReparacion")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("PrecioRespuestos")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("PrecioRespuestos")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ProcedimientoId")
                         .HasColumnType("int");
@@ -418,9 +424,33 @@ namespace TallerVehiculos.Migrations
 
                     b.HasIndex("MarcaVehiculoId");
 
+                    b.HasIndex("Placa")
+                        .IsUnique();
+
                     b.HasIndex("TipoVehiculoId");
 
                     b.ToTable("Vehiculos");
+                });
+
+            modelBuilder.Entity("TallerVehiculos.Modelos.IdentityModels", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Documento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Movil")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TipoDocumentoId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("TipoDocumentoId");
+
+                    b.HasDiscriminator().HasValue("IdentityModels");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -510,6 +540,15 @@ namespace TallerVehiculos.Migrations
                         .HasForeignKey("TipoVehiculoId");
                 });
 
+            modelBuilder.Entity("TallerVehiculos.Modelos.IdentityModels", b =>
+                {
+                    b.HasOne("TallerVehiculos.Entidades.TipoDocumento", "TipoDocumento")
+                        .WithMany("IdentityModels")
+                        .HasForeignKey("TipoDocumentoId");
+
+                    b.Navigation("TipoDocumento");
+                });
+
             modelBuilder.Entity("TallerVehiculos.Entidades.Historial", b =>
                 {
                     b.Navigation("Detalles");
@@ -523,6 +562,11 @@ namespace TallerVehiculos.Migrations
             modelBuilder.Entity("TallerVehiculos.Entidades.Procedimiento", b =>
                 {
                     b.Navigation("Detalles");
+                });
+
+            modelBuilder.Entity("TallerVehiculos.Entidades.TipoDocumento", b =>
+                {
+                    b.Navigation("IdentityModels");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.TipoVehiculo", b =>

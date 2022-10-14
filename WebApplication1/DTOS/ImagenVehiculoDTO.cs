@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.DTOS
 {
@@ -10,5 +11,7 @@ namespace TallerVehiculos.DTOS
         public string placa { get; set; }
         [Required]
         public string Foto { get; set; }
+
+        
     }
 }

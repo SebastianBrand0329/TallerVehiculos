@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using TallerVehiculos.Modelos;
 
 namespace TallerVehiculos.Entidades
 {
@@ -9,7 +11,7 @@ namespace TallerVehiculos.Entidades
         [Required]
         [MaxLength(30)]
         public string Descripcion { get; set; }
-
-        public ICollection<AspNetUserManager> User { get; set; }
+        [JsonIgnore]
+        public ICollection<IdentityModels> IdentityModels { get; set; }
     }
 }

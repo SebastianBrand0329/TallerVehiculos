@@ -9,6 +9,5 @@ namespace TallerVehiculos.DTOS
         [MaxLength(50)]
         public string Marca { get; set; }
 
-        public ICollection<Vehiculo> Vehiculos { get; set; }
     }
 }

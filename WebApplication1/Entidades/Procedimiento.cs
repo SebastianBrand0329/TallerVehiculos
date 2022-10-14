@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TallerVehiculos.Entidades
 {
@@ -9,8 +10,8 @@ namespace TallerVehiculos.Entidades
         [MaxLength(255)]
         public string Descripcion { get; set; }
         [Required]
-        public decimal Valor { get; set; }
-
+        public double Valor { get; set; }
+        [JsonIgnore]
         public ICollection<Detalle> Detalles { get; set; }
 
     }

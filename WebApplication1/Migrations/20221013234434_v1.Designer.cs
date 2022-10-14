@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TallerVehiculos.Data;
 
@@ -11,9 +12,10 @@ using TallerVehiculos.Data;
 namespace TallerVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221013234434_v1")]
+    partial class v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,11 +244,11 @@ namespace TallerVehiculos.Migrations
                     b.Property<int?>("HistorialId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PrecioReparacion")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PrecioReparacion")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("PrecioRespuestos")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PrecioRespuestos")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("ProcedimientoId")
                         .HasColumnType("int");
@@ -273,8 +275,8 @@ namespace TallerVehiculos.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<double>("KilometrajeIngreso")
-                        .HasColumnType("float");
+                    b.Property<decimal>("KilometrajeIngreso")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("VehiculoId")
                         .HasColumnType("int");
@@ -344,8 +346,8 @@ namespace TallerVehiculos.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -404,9 +406,6 @@ namespace TallerVehiculos.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("IdentityModelsId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("MarcaVehiculoId")
                         .HasColumnType("int");
 
@@ -422,8 +421,6 @@ namespace TallerVehiculos.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdentityModelsId");
 
                     b.HasIndex("MarcaVehiculoId");
 
@@ -509,17 +506,13 @@ namespace TallerVehiculos.Migrations
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Detalle", b =>
                 {
-                    b.HasOne("TallerVehiculos.Entidades.Historial", "Historial")
+                    b.HasOne("TallerVehiculos.Entidades.Historial", null)
                         .WithMany("Detalles")
                         .HasForeignKey("HistorialId");
 
-                    b.HasOne("TallerVehiculos.Entidades.Procedimiento", "Procedimiento")
+                    b.HasOne("TallerVehiculos.Entidades.Procedimiento", null)
                         .WithMany("Detalles")
                         .HasForeignKey("ProcedimientoId");
-
-                    b.Navigation("Historial");
-
-                    b.Navigation("Procedimiento");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Historial", b =>
@@ -531,32 +524,20 @@ namespace TallerVehiculos.Migrations
 
             modelBuilder.Entity("TallerVehiculos.Entidades.ImagenVehiculo", b =>
                 {
-                    b.HasOne("TallerVehiculos.Entidades.Vehiculo", "Vehiculo")
+                    b.HasOne("TallerVehiculos.Entidades.Vehiculo", null)
                         .WithMany("ImagenVehiculos")
                         .HasForeignKey("VehiculoId");
-
-                    b.Navigation("Vehiculo");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Entidades.Vehiculo", b =>
                 {
-                    b.HasOne("TallerVehiculos.Modelos.IdentityModels", "IdentityModels")
-                        .WithMany("Vehiculos")
-                        .HasForeignKey("IdentityModelsId");
-
-                    b.HasOne("TallerVehiculos.Entidades.MarcaVehiculo", "MarcaVehiculo")
+                    b.HasOne("TallerVehiculos.Entidades.MarcaVehiculo", null)
                         .WithMany("Vehiculos")
                         .HasForeignKey("MarcaVehiculoId");
 
-                    b.HasOne("TallerVehiculos.Entidades.TipoVehiculo", "TipoVehiculo")
+                    b.HasOne("TallerVehiculos.Entidades.TipoVehiculo", null)
                         .WithMany("Vehiculos")
                         .HasForeignKey("TipoVehiculoId");
-
-                    b.Navigation("IdentityModels");
-
-                    b.Navigation("MarcaVehiculo");
-
-                    b.Navigation("TipoVehiculo");
                 });
 
             modelBuilder.Entity("TallerVehiculos.Modelos.IdentityModels", b =>
@@ -598,11 +579,6 @@ namespace TallerVehiculos.Migrations
                     b.Navigation("Historials");
 
                     b.Navigation("ImagenVehiculos");
-                });
-
-            modelBuilder.Entity("TallerVehiculos.Modelos.IdentityModels", b =>
-                {
-                    b.Navigation("Vehiculos");
                 });
 #pragma warning restore 612, 618
         }

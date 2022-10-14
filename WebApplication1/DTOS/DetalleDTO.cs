@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.DTOS
 {
@@ -6,11 +8,12 @@ namespace TallerVehiculos.DTOS
     {
         public int Id { get; set; }
         [Required]
-        public decimal PrecioReparacion { get; set; }
+        public int PrecioReparacion { get; set; }
         [Required]
-        public decimal PrecioRespuestos { get; set; }
+        public int PrecioRespuestos { get; set; }
         [Required]
         [MaxLength(100)]
         public string Descripcion { get; set; }
+
     }
 }

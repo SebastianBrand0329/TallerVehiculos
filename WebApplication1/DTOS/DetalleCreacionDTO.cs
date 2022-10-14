@@ -1,16 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TallerVehiculos.Entidades;
 
 namespace TallerVehiculos.DTOS
 {
     public class DetalleCreacionDTO
     {
         [Required]
-        public decimal PrecioReparacion { get; set; }
+        public int PrecioReparacion { get; set; }
         [Required]
-        public decimal PrecioRespuestos { get; set; }
+        public int PrecioRespuestos { get; set; }
         [Required]
         [MaxLength(100)]
         public string Descripcion { get; set; }
+
 
     }
 }
